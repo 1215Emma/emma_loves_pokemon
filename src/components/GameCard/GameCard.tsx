@@ -1,17 +1,21 @@
 'use client'
-import Image from 'next/image'
+import { games } from '../../app/api/games/games'
 import styles from './GameCard.module.css'
 
 export const GameCard = () => {
   return (
-    <button
-      type="button"
-      className={styles.imageButton}
-      onClick={() => {
-        console.log('test')
-      }}
-    >
-      Memory
-    </button>
+    <div className={styles.gamesCardContainer}>
+      {games.map((game) => (
+        <button
+          type="button"
+          className={styles.imageButton}
+          onClick={() => {
+            console.log('test')
+          }}
+        >
+          {game.name}
+        </button>
+      ))}
+    </div>
   )
 }
