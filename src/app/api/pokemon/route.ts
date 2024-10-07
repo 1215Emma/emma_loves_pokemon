@@ -18,7 +18,7 @@ type PokemonData = {
   sprite: string
 }
 export async function GET() {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/1/`)
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/134/`)
   if (!res.ok) throw new Error('Error fetching pokemon')
   const data = await res.json()
   const pokemonData: PokemonData = {

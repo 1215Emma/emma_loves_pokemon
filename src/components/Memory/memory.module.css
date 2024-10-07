@@ -1,0 +1,25 @@
+.memoryContainer {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  min-width: 40rem;
+  gap: 20px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imageContainer {
+  flex: 0 0 calc(33.33% - 20px); /* Each item takes 1/3 of the container width */
+  box-sizing: border-box; /* Ensure padding/margins are included in width */
+  padding: 20px; /* Space inside each item */
+  height: 15rem;
+  border: 3px solid black; /* Optional: Border for visibility */
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  text-align: center; /* Center text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 10rem;
+}
