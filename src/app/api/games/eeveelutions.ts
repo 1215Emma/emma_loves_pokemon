@@ -1,4 +1,10 @@
-export const eeveelutions = [
+export type EeveelutionsType = {
+  id: number
+  name: string
+  sprite: string
+}
+
+export const eeveelutions: EeveelutionsType[] = [
   {
     id: 133,
     name: 'Eevee',

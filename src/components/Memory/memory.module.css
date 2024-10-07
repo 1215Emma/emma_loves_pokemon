@@ -1,8 +1,8 @@
 .memoryContainer {
   display: flex;
   flex-wrap: wrap;
-  max-width: 40rem;
-  min-width: 40rem;
+  max-width: 50rem;
+  min-width: 70rem;
   gap: 20px;
   justify-content: center;
   margin-left: auto;
@@ -10,16 +10,25 @@
 }
 
 .imageContainer {
-  flex: 0 0 calc(33.33% - 20px); /* Each item takes 1/3 of the container width */
-  box-sizing: border-box; /* Ensure padding/margins are included in width */
-  padding: 20px; /* Space inside each item */
+  position: relative;
+  flex: 0 0 calc(33.33% - 20px);
+  box-sizing: border-box;
+  padding: 20px;
   height: 15rem;
-  border: 3px solid black; /* Optional: Border for visibility */
+  border: 3px solid rgba(0, 217, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  text-align: center; /* Center text */
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 10rem;
+}
+
+.cardBtn {
+  background: none;
+  height: 15rem;
+  max-width: 10rem;
+  border: none;
+  cursor: pointer;
 }
