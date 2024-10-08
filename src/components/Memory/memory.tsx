@@ -55,25 +55,35 @@ export const Memory = () => {
           matchedCards.includes(eeveelution.id) || flippedCards.includes(index)
 
         return (
-          <button
-            type="button"
-            className={styles.imageContainer}
-            onClick={() => {
-              handleCardClick(index)
-            }}
-            disabled={matchedCards.includes(eeveelution.id)}
-          >
-            {isFlipped ? (
-              <Image
-                src={eeveelution.sprite}
-                width={150}
-                height={150}
-                alt={eeveelution.name}
-              />
-            ) : (
-              <Image src={MemoryCardBack} fill={true} alt={'card back'} />
-            )}
-          </button>
+          <div className={styles.cardContainer}>
+            <button
+              type="button"
+              className={`${styles.imageContainer} ${
+                isFlipped ? styles.flipped : ''
+              }`}
+              onClick={() => {
+                handleCardClick(index)
+              }}
+              disabled={matchedCards.includes(eeveelution.id)}
+            >
+              {isFlipped ? (
+                <Image
+                  src={eeveelution.sprite}
+                  width={200}
+                  height={200}
+                  alt={eeveelution.name}
+                  className={styles.flipCardFront}
+                />
+              ) : (
+                <Image
+                  src={MemoryCardBack}
+                  fill={true}
+                  alt={'card back'}
+                  className={styles.flipCardBack}
+                />
+              )}
+            </button>
+          </div>
         )
       })}
     </div>

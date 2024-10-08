@@ -8,3 +8,5 @@ export const games = [
     name: 'Wanted!',
   },
 ]
+
+export const difficulty = ['easy', 'medium', 'hard']

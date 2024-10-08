@@ -14,7 +14,9 @@
   flex: 0 0 calc(33.33% - 20px);
   box-sizing: border-box;
   padding: 20px;
-  height: 15rem;
+  height: 100%;
+  width: 100%;
+  /* height: 15rem; */
   border: 3px solid rgba(0, 217, 255, 0.5);
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
@@ -22,7 +24,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 10rem;
+  /* max-width: 10rem; */
+  cursor: pointer;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
 }
 
 .cardBtn {
@@ -31,4 +36,32 @@
   max-width: 10rem;
   border: none;
   cursor: pointer;
+}
+
+.cardContainer {
+  background-color: transparent;
+  width: 10rem;
+  height: 15rem;
+  perspective: 1000px;
+}
+
+/* .cardContainer:hover .imageContainer {
+  transform: rotateY(180deg);
+} */
+
+.imageContainer.flipped {
+  transform: rotateY(180deg);
+}
+
+.flipCardFront,
+.flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flipCardFront {
+  transform: rotateY(180deg);
 }
