@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import {
   eeveelutions,
@@ -10,11 +10,14 @@ import styles from './memory.module.css'
 import MemoryCardBack from '../../assets/backgrounds/memoryCardBack.webp'
 export const Memory = () => {
   const [shuffledMemory, setShuffledMemory] = useState<EeveelutionsType[]>(
-    shuffleArray([...eeveelutions, ...eeveelutions]),
+    shuffleArray([...eeveelutions.slice(0, 3), ...eeveelutions.slice(0, 3)]),
   )
   const [flippedCards, setFlippedCards] = useState<number[]>([])
   const [matchedCards, setMatchedCards] = useState<number[]>([])
-  const [difficulty, setDifficulty] = useState<string[]>()
+  const [level, setLevel] = useState<number>(1)
+  const [failedAttempts, setFailedAttempts] = useState<number>(0)
+  const [maxAttempts, setMaxAttempts] = useState<number>(2)
+
   const handleCardClick = (index: number) => {
     // If two cards are already flipped or the card is already matched, do nothing
     if (
@@ -43,9 +46,55 @@ export const Memory = () => {
         // If no match, wait for a second before resetting
         setTimeout(() => {
           setFlippedCards([])
+          setFailedAttempts(failedAttempts + 1)
+          if (failedAttempts >= maxAttempts) {
+            setMatchedCards([])
+            setLevel(1)
+            setFailedAttempts(0)
+            setMaxAttempts(2)
+            setShuffledMemory(
+              shuffleArray([
+                ...eeveelutions.slice(0, 3),
+                ...eeveelutions.slice(0, 3),
+              ]),
+            )
+          }
         }, 1000)
       }
     }
+  }
+  if (
+    level === 1 &&
+    failedAttempts <= maxAttempts &&
+    matchedCards.length === 3
+  ) {
+    setTimeout(() => {
+      setLevel(2)
+      setFailedAttempts(0)
+      setMaxAttempts(5)
+      setFlippedCards([])
+      setMatchedCards([])
+      setShuffledMemory(
+        shuffleArray([
+          ...eeveelutions.slice(0, 6),
+          ...eeveelutions.slice(0, 6),
+        ]),
+      )
+    }, 1500)
+  }
+  if (
+    level === 2 &&
+    failedAttempts <= maxAttempts &&
+    matchedCards.length === 6
+  ) {
+    setTimeout(() => {
+      setLevel(3)
+      setFailedAttempts(0)
+      setMaxAttempts(9)
+      setFlippedCards([])
+      setMatchedCards([])
+      setShuffledMemory(shuffleArray([...eeveelutions, ...eeveelutions]))
+    }, 1500)
   }
 
   return (
@@ -55,7 +104,7 @@ export const Memory = () => {
           matchedCards.includes(eeveelution.id) || flippedCards.includes(index)
 
         return (
-          <div className={styles.cardContainer}>
+          <div className={styles.cardContainer} key={index}>
             <button
               type="button"
               className={`${styles.imageContainer} ${
